@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1574464626 source:/home/aboeleneen/Documents/operating systems/BATMAN/main.cpp
+	<iostream>
+	<pthread.h>
+	<unistd.h>
+	<bits/stdc++.h>
+
