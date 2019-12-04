@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1572214209 source:/home/sawy/coding/MergeSort2/main.cpp
+	<iostream>
+	<pthread.h>
+	<vector>
+

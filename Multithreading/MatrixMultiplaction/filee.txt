@@ -1,0 +1,64 @@
+#include <iostream>
+#include<pthread.h>
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+vector < vector<ll> > matrix1 , matrix2 , result ;
+void* multiply_two_element(void* arg){
+    pair<ll,ll> p =*(pair<ll,ll>*) arg;
+    ll row = matrix1.size();
+    ll sum = 0 ;
+    for(ll i=0;i<row;i++){
+        sum+=(matrix1[p.first].at(i)*matrix2[p.second].at(i));
+    }
+    result[p.first].at(p.second)=sum;
+}
+
+void multiplication_each_element(){
+     ll rows = matrix1.size();
+     ll cols = matrix2.at(0).size();
+     vector<pthread_t> threads ;
+     for(ll i=0;i<rows;i++){
+        for(ll j=0;j<cols;j++){
+            pthread_t element_thread ;
+            pair<ll,ll> p = make_pair(i,j);
+            pthread_create(&element_thread,NULL,&multiply_two_element,&p);
+            threads.push_back(element_thread);
+        }
+     }
+     for(ll i=0;i<threads.size();i++){
+        pthread_join(threads.at(i),NULL);
+     }
+}
+int main()
+{
+    freopen("input.txt","r",stdin);
+    ll n, m ;
+    cin >> n >> m ;
+    matrix1 = vector<vector<ll> >(n);
+    for(ll i=0;i<n;i++){
+        for(ll j=0;j<m;j++){
+            ll a ;
+            cin >> a ;
+            matrix1[i].push_back(a);
+        }
+    }
+    ll n2,m2;
+    cin >> n2 >> m2 ;
+    matrix2 = vector<vector<ll> >(n2);
+     for(ll i=0;i<n2;i++){
+        for(ll j=0;j<m2;j++){
+            ll a ;
+            cin >> a ;
+            matrix2[i].push_back(a);
+        }
+    }
+    multiplication_each_element();
+      for(ll i=0;i<n2;i++){
+        for(ll j=0;j<m2;j++){
+            cout <<
+        }
+    }
+    return 0;
+}
+
